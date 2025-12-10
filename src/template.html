@@ -3,9 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>To Do List</title>
 </head>
 <body>
+    <div id="container">
+
+    </div>
+
+    <button id="openNewProject">New Project</button>
+    <dialog id="newProjectDialog">
+        <h2>New Project:</h2>
+        <form method="dialog" id="newProjectForm">
+            <label for="name2">Name:</label>
+            <input type="text" name="name2" id="name2">
+            <button type="submit" value="confirm">Submit</button>
+            <button type="submit" value="cancel">Cancel</button>
+        </form>
+    </dialog>
+
+    <button id="openNewListItem">New List Item</button>
+    <dialog id="newListItemDialog">
+        <h2>New To Do Item:</h2>
+        <form method="dialog" id="newListItemForm">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name">
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description">
+            <label for="priority">Priority:</label>
+            <select name="priority" id="priority">
+                <option value="">--Please choose an option--</option>
+                <option value="low">Low</option>
+                <option value="normal">Normal</option>
+                <option value="high">High</option>
+            </select>
+            <label for="deadline">Deadline:</label>
+            <input type="text" name="deadline" id="deadline">
+            <button type="submit" value="confirm">Submit</button>
+            <button type="submit" value="cancel">Cancel</button>
+        </form>
+    </dialog>
 
 </body>
 </html>
