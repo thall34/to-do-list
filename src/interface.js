@@ -1,5 +1,5 @@
 import { newListItemButton, editListItemButton, newProjectButton } from "./dialog.js"
-import { removeListItemFromProject, editItemCompleted, removeProjectFromContainer, deactivateAllProjects, activateProject, getActiveProjectIndex, allProjects } from "./logic.js"
+import { removeListItemFromProject, editItemCompleted, removeProjectFromContainer, deactivateAllProjects, activateProject, getActiveProjectIndex, allProjects, updateProjectsToLocalStorage, retrieveProjectsFromLocalStorage } from "./logic.js"
 
 // UI elements
 
@@ -28,6 +28,7 @@ function displayAllProjects(projectContainer, DOMContainer) {
                 event.stopPropagation();
                 removeProjectFromContainer(project, projectContainer);
                 displayAllProjects(projectContainer, DOMContainer);
+                // updateProjectsToLocalStorage("projects", projectContainer);
             });
 
             projectButton.appendChild(projectDelete);
@@ -124,4 +125,4 @@ function displayInterface(DOMContainer) {
     displayListItems(allProjects[getActiveProjectIndex(allProjects)], listBody);
 };
 
-export { displayInterface }
+export { displayInterface, displayAllProjects, displayListItems }

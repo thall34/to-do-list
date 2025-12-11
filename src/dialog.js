@@ -1,10 +1,12 @@
-import { editListItem, createProject, addProjectToContainer } from "./logic.js"
+import { editListItem, createListItem, addListItemToProject, createProject, addProjectToContainer } from "./logic.js"
+import { displayAllProjects, displayListItems } from "./interface.js";
 
 // dialog functions
 
 function newListItemButton(project, DOMContainer) {
     const newButton = document.createElement("button");
     newButton.textContent = "New List Item";
+    newButton.className = "project"
     DOMContainer.appendChild(newButton);
 
     const listItemDialog = document.createElement("dialog");
@@ -202,6 +204,7 @@ function editListItemButton(item, project, DOMContainer) {
 function newProjectButton(projectContainer, DOMContainer) {
     const newButton = document.createElement("button");
     newButton.textContent = "New Project";
+    newButton.className = "project"
     DOMContainer.appendChild(newButton);
 
     const projectDialog = document.createElement("dialog");
