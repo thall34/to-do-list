@@ -3,7 +3,7 @@ import { displayAllProjects, displayListItems } from "./interface.js";
 
 // dialog functions
 
-function newListItemButton(project, DOMContainer) {
+function newListItemButton(project, DOMContainer, projectContainer) {
     const newButton = document.createElement("button");
     newButton.textContent = "New List Item";
     newButton.className = "project"
@@ -25,6 +25,7 @@ function newListItemButton(project, DOMContainer) {
     inputItemName.type = "text";
     inputItemName.name = "itemName";
     inputItemName.id = "itemName";
+    inputItemName.required = true;
 
     const labelItemDescription = document.createElement("label");
     labelItemDescription.textContent = "Description:";
@@ -42,6 +43,7 @@ function newListItemButton(project, DOMContainer) {
     const selectItemPriority = document.createElement("select");
     selectItemPriority.name = "itemPriority";
     selectItemPriority.id = "itemPriority";
+    selectItemPriority.required = true;
 
     const priorityOption1 = document.createElement("option");
     priorityOption1.textContent = "--Please choose an option--";
@@ -67,9 +69,9 @@ function newListItemButton(project, DOMContainer) {
 
     const inputItemDeadline = document.createElement("input");
     inputItemDeadline.type = "date";
-    inputItemDeadline.min = new Date();
     inputItemDeadline.name = "itemDeadline";
     inputItemDeadline.id = "itemDeadline";
+    inputItemDeadline.required = true;
 
     const submitButton = document.createElement("button")
     submitButton.textContent = "Submit";
@@ -80,6 +82,7 @@ function newListItemButton(project, DOMContainer) {
     cancelButton.textContent = "Cancel";
     cancelButton.type = "submit";
     cancelButton.value = "cancel";
+    cancelButton.formNoValidate = true;
 
     listItemForm.append(labelItemName, inputItemName, labelItemDescription, inputItemDescription);
     listItemForm.append(labelItemPriority, selectItemPriority, labelItemDeadline, inputItemDeadline);
@@ -94,8 +97,8 @@ function newListItemButton(project, DOMContainer) {
     listItemDialog.addEventListener("close", () => {
         if (listItemDialog.returnValue === "confirm") {
             const newListItem = createListItem(inputItemName.value, inputItemDescription.value, selectItemPriority.value, inputItemDeadline.value);
-            addListItemToProject(newListItem, project);
-            displayListItems(project, DOMContainer);
+            addListItemToProject(newListItem, project, projectContainer);
+            displayListItems(project, DOMContainer, projectContainer);
             listItemForm.reset();
         } else {
             listItemForm.reset();
@@ -103,7 +106,7 @@ function newListItemButton(project, DOMContainer) {
     });
 };
 
-function editListItemButton(item, project, DOMContainer) {
+function editListItemButton(item, project, DOMContainer, projectContainer) {
     const newButton = document.createElement("button");
     newButton.textContent = "Edit";
     DOMContainer.appendChild(newButton);
@@ -111,7 +114,7 @@ function editListItemButton(item, project, DOMContainer) {
     const listItemDialog = document.createElement("dialog");
 
     const listItemHeader = document.createElement("h2");
-    listItemHeader.textContent = "New List Item:";
+    listItemHeader.textContent = "Edit List Item:";
 
     const listItemForm = document.createElement("form");
     listItemForm.method = "dialog";
@@ -124,6 +127,7 @@ function editListItemButton(item, project, DOMContainer) {
     inputItemName.type = "text";
     inputItemName.name = "itemName";
     inputItemName.id = "itemName";
+    inputItemName.required = true;
 
     const labelItemDescription = document.createElement("label");
     labelItemDescription.textContent = "Description:";
@@ -141,6 +145,7 @@ function editListItemButton(item, project, DOMContainer) {
     const selectItemPriority = document.createElement("select");
     selectItemPriority.name = "itemPriority";
     selectItemPriority.id = "itemPriority";
+    selectItemPriority.required = true;
 
     const priorityOption1 = document.createElement("option");
     priorityOption1.textContent = "--Please choose an option--";
@@ -166,9 +171,9 @@ function editListItemButton(item, project, DOMContainer) {
 
     const inputItemDeadline = document.createElement("input");
     inputItemDeadline.type = "date";
-    inputItemDeadline.min = new Date();
     inputItemDeadline.name = "itemDeadline";
     inputItemDeadline.id = "itemDeadline";
+    inputItemDeadline.required = true;
 
     const submitButton = document.createElement("button")
     submitButton.textContent = "Submit";
@@ -179,6 +184,7 @@ function editListItemButton(item, project, DOMContainer) {
     cancelButton.textContent = "Cancel";
     cancelButton.type = "submit";
     cancelButton.value = "cancel";
+    cancelButton.formNoValidate = true;
 
     listItemForm.append(labelItemName, inputItemName, labelItemDescription, inputItemDescription);
     listItemForm.append(labelItemPriority, selectItemPriority, labelItemDeadline, inputItemDeadline);
@@ -192,8 +198,8 @@ function editListItemButton(item, project, DOMContainer) {
 
     listItemDialog.addEventListener("close", () => {
         if (listItemDialog.returnValue === "confirm") {
-            editListItem(item, inputItemName.value, inputItemDescription.value, selectItemPriority.value, inputItemDeadline.value);
-            displayListItems(project, DOMContainer.parentElement);
+            editListItem(item, inputItemName.value, inputItemDescription.value, selectItemPriority.value, inputItemDeadline.value, projectContainer);
+            displayListItems(project, DOMContainer.parentElement, projectContainer);
             listItemForm.reset();
         } else {
             listItemForm.reset();
@@ -223,6 +229,7 @@ function newProjectButton(projectContainer, DOMContainer) {
     inputProjectName.type = "text";
     inputProjectName.name = "projectName";
     inputProjectName.id = "projectName";
+    inputProjectName.required = true;
 
     const submitButton = document.createElement("button")
     submitButton.textContent = "Submit";
@@ -233,6 +240,7 @@ function newProjectButton(projectContainer, DOMContainer) {
     cancelButton.textContent = "Cancel";
     cancelButton.type = "submit";
     cancelButton.value = "cancel";
+    cancelButton.formNoValidate = true;
 
     projectForm.append(labelProjectName, inputProjectName, submitButton, cancelButton);
     projectDialog.append(projectHeader, projectForm);

@@ -39,6 +39,16 @@ button {
     margin: 5px;
 }
 
+.active {
+    background-color: rgb(193, 229, 255);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+}
+
 #list {
     display: flex;
     flex-direction: column;
