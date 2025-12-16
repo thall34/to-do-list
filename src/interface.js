@@ -134,12 +134,16 @@ function displayListItems(project, DOMContainer, projectContainer) {
 };
 
 function displayInterface(DOMContainer) {
+    // retrieves project container array from local storage, if nothing is stored it sets the default list
     let storage = retrieveProjectsFromLocalStorage("projects");
+
+    // creates header div to store projects
     const header = document.createElement("div");
     header.id = "header";
     DOMContainer.appendChild(header);
-    displayAllProjects(storage, header)
+    displayAllProjects(storage, header);
 
+    // creates body div to store list item info
     const listBody = document.createElement("div");
     listBody.id = "list";
     DOMContainer.appendChild(listBody);
