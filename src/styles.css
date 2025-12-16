@@ -50,6 +50,7 @@ button {
     gap: 5px;
     padding: 10px 20px;
     margin: 20px;
+    margin-right: 0px;
 }
 
 .active {
